@@ -23,8 +23,17 @@ public class AtomikosTest {
     private ProductService1 productService;
     
 
+    
     @Test
-    public void testWithOutTransactionalAnnotation() {
+    public void testWithTransactionalAnnotation() {
+        this.productService.findAllTransactional();
+    }
+    
+    /**
+     * Why I need @Transactional annotation on a query method?
+     */
+    @Test
+    public void testWithoutTransactionalAnnotation() {
         this.productService.findAll();
     }
     
