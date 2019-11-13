@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bracso.test.atomikos.entities.Product;
 
@@ -14,6 +15,7 @@ import com.bracso.test.atomikos.entities.Product;
  * @author oburgosm
  */
 @Repository
+@Transactional
 public class ProductRepository {
     
     private final JdbcTemplate jdbcTemplate;
