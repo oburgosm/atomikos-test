@@ -31,6 +31,10 @@ public class ProductRepository {
         });
     }
     
+    public int insert(Product p) {
+        return this.jdbcTemplate.update("INSERT INTO Product(id, name) Values (?, ?)", p.getId(), p.getName());
+    }
+    
     
 
 }

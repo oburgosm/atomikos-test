@@ -5,13 +5,14 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.bracso.test.atomikos.repository1.ProductRepository;
+//import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
+import com.atomikos.jdbc.AtomikosNonXADataSourceBean;
+
 
 /**
  *
@@ -26,7 +27,7 @@ public class DsConfiguration {
     @ConfigurationProperties(prefix = "datasource.ds1")
     public DataSource ds1XA()
             throws SQLException {
-        return new AtomikosDataSourceBean();
+        return new AtomikosNonXADataSourceBean();
     }
 
     @Bean

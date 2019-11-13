@@ -3,30 +3,23 @@ spring:
     name: atomikos-test
   datasource:
     platform: h2
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: none
-        dialect: org.hibernate.dialect.H2Dialect
-        connection:
-          autocommit: false
 datasource:
     ds1:
-      max-pool-size: 5
-      min-pool-size: 5
-      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
+      login-timeout: 60
+      maintenance-interval: 60
+      max-idle-time: 60
+      max-lifetime: 0
+      max-pool-size: 10
+      min-pool-size: 0
+      reap-timeout: 0
       use-driver-based-connection-validation: true
-      xa-properties:
-        user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
-        URL: jdbc:h2:mem:db1;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
-    ds2:
-      max-pool-size: 5
-      min-pool-size: 5
-      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
-      use-driver-based-connection-validation: true
-      xa-properties:
-        user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
-        URL: jdbc:h2:mem:db2;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+      connection-validation-interval: 30000
+      concurrent-connection-validation: true
+      local-transaction-mode: true
+      unique-resource-name: ds1
+      
+      driverClassName: org.h2.Driver
+      user: sa
+      password: sa
+      url: jdbc:h2:mem:nonxa1;MODE=Oracle;DB_CLOSE_ON_EXIT=TRUE;
+

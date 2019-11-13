@@ -19,13 +19,24 @@ public class ProductService1 {
     @Autowired
     private ProductRepository productRepository;
     
-    @Transactional(readOnly = true)
-    public List<Product> findAllTransactional() {
+    public List<Product> findAll() {
         return this.productRepository.findAll();
     }
     
-    public List<Product> findAll() {
-        return this.productRepository.findAll();
+    @Transactional
+    public int insert(Product p) {
+        return this.productRepository.insert(p);
+    }
+    
+    /**
+     * We insert two products, expecting that it fail and rollback
+     * @param p
+     * @return 
+     */
+    @Transactional
+    public int badInsert(Product p) {
+        this.productRepository.insert(p);
+        return this.productRepository.insert(p);
     }
     
 }
