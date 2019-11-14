@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-//import com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean;
-import com.atomikos.jdbc.AtomikosNonXADataSourceBean;
-
+import com.bracso.test.atomikos.CustomAtomikosNonXADataSourceBean;
 
 /**
  *
@@ -20,20 +18,17 @@ import com.atomikos.jdbc.AtomikosNonXADataSourceBean;
  */
 @Configuration
 public class DsConfiguration {
-    
 
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "datasource.ds1")
-    public DataSource ds1XA()
-            throws SQLException {
-        return new AtomikosNonXADataSourceBean();
+    public DataSource ds1XA() {
+        return new CustomAtomikosNonXADataSourceBean();
     }
 
     @Bean
-    public JdbcTemplate primaryJdbcTemplateXA() throws SQLException {
+    public JdbcTemplate primaryJdbcTemplateXA() {
         return new JdbcTemplate(ds1XA());
     }
-    
 
 }
