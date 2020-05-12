@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.bracso.test.atomikos.service.ProductService1;
+import com.bracso.test.atomikos.service.ProgramacionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,13 +20,13 @@ public class AtomikosTest {
     
     
     @Autowired
-    private ProductService1 productService;
+    private ProgramacionService programacionService;
     
 
     
     @Test
     public void testWithTransactionalAnnotation() {
-        this.productService.findAllTransactional();
+        this.programacionService.findAllTransactional();
     }
     
     /**
@@ -34,7 +34,7 @@ public class AtomikosTest {
      */
     @Test
     public void testWithoutTransactionalAnnotation() {
-        this.productService.findAll();
+        this.programacionService.findAll();
     }
     
 }

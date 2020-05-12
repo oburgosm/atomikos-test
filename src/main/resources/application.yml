@@ -2,31 +2,34 @@ spring:
   application:
     name: atomikos-test
   datasource:
-    platform: h2
+    platform: db2
   jpa:
     properties:
       hibernate:
+#        default_schema: GESTION_COMISION
         hbm2ddl:
           auto: none
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: org.hibernate.dialect.DB2Dialect
         connection:
           autocommit: false
 datasource:
     ds1:
       max-pool-size: 5
       min-pool-size: 5
-      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
+      xa-data-source-class-name: com.ibm.db2.jcc.DB2XADataSource
       use-driver-based-connection-validation: true
+      init-connection-sql: set schema GESTION_COMISION
       xa-properties:
-        user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
-        URL: jdbc:h2:mem:db1;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
-    ds2:
-      max-pool-size: 5
-      min-pool-size: 5
-      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
-      use-driver-based-connection-validation: true
-      xa-properties:
-        user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
-        URL: jdbc:h2:mem:db2;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+        serverName: axdesdb22.central.inditex.grp
+        portNumber: 50000
+        databaseName: INDITEX
+        currentSchema: GESTION_COMISION
+        user: uincome
+        password: pzuUKBm1ppMGzzOn
+        clientProgramName: ${metadata.jirakey}-${metadata.slot}
+        driverType: 4
+        loginTimeout: 300
+        connectionTimeout: 300
+        commandTimeout: 300
+        interruptProcessingMode: 2
+
