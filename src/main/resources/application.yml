@@ -5,10 +5,13 @@ spring:
     platform: db2
   jpa:
     properties:
+#      javax.persistence.schema-generation.scripts.action: create
+#      javax.persistence.schema-generation.create-source: metadata
+#      javax.persistence.schema-generation.scripts.create-target: src/main/resources/schema-db2.sql
       hibernate:
-#        default_schema: GESTION_COMISION
+        default_schema: OTHERSCHEMA
         hbm2ddl:
-          auto: none
+          auto: update
         dialect: org.hibernate.dialect.DB2Dialect
         connection:
           autocommit: false
@@ -18,14 +21,15 @@ datasource:
       min-pool-size: 5
       xa-data-source-class-name: com.ibm.db2.jcc.DB2XADataSource
       use-driver-based-connection-validation: true
-      init-connection-sql: set schema GESTION_COMISION
+      local-transaction-mode: true
+      #init-connection-sql: set schema OTHERSCHEMA
       xa-properties:
-        serverName: axdesdb22.central.inditex.grp
+        serverName: localhost
         portNumber: 50000
-        databaseName: INDITEX
-        currentSchema: GESTION_COMISION
-        user: uincome
-        password: pzuUKBm1ppMGzzOn
+        databaseName: testdb
+        currentSchema: OTHERSCHEMA
+        user: db2inst1
+        password: db2inst1
         clientProgramName: ${metadata.jirakey}-${metadata.slot}
         driverType: 4
         loginTimeout: 300

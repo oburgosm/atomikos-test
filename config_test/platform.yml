@@ -1,0 +1,9 @@
+app:
+  jvm:
+    heap:
+      max: 256M
+      min: 128M
+  health_probe:
+    http_path: /
+    retries: 10
+    initial_delay_seconds: 10

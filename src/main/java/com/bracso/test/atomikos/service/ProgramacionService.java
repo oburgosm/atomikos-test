@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bracso.test.atomikos.entities.Programacion;
-import com.bracso.test.atomikos.repository1.ProgramacionRepository;
+import com.bracso.test.atomikos.repository.ProgramacionRepository;
 
 /**
  *
@@ -24,8 +24,5 @@ public class ProgramacionService {
         return this.programacionRepository.findAll();
     }
     
-    public List<Programacion> findAll() {
-        return this.programacionRepository.findAll();
-    }
     
 }

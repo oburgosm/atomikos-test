@@ -1,5 +1,5 @@
 
-package com.bracso.test.atomikos.repository1;
+package com.bracso.test.atomikos.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
