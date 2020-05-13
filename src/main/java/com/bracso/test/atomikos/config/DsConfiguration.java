@@ -34,19 +34,17 @@ public class DsConfiguration {
         return new AtomikosDataSourceBean();
     }
     
-    @Bean(name = "entityManagerFactory")
-    @Primary
+ @Bean(name = "entityManagerFactory") 
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            final EntityManagerFactoryBuilder entityManagerFactoryBuilder,
-            JpaProperties jpaConfiguration,
-            final DataSource dataSource) {
-        Map<String, String> jpaProperties = jpaConfiguration.getProperties();
-        return entityManagerFactoryBuilder.dataSource(dataSource)
-                .persistenceUnit("primaryPersistenceUnit")
-                .packages("com.bracso.test.atomikos.entities")
-                .properties(jpaProperties)
-                .jta(true)
-                .build();
+                EntityManagerFactoryBuilder emBuilder,
+                JpaProperties jpaConfiguration) throws SQLException {
+      Map<String, String> properties = jpaConfiguration.getProperties(); 
+      return emBuilder.dataSource(ds1XA())
+             .persistenceUnit("primaryPersistenceUnit")
+             .packages("com.bracso.test.atomikos.entities")
+             .properties(properties) 
+             .jta(true) 
+             .build();
     }
     
 
