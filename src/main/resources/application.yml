@@ -3,15 +3,17 @@ spring:
     name: atomikos-test
   datasource:
     platform: db2
+    #initialization-mode: always #Uncomment the first time to initialize database
+    initialization-mode: never
   jpa:
     properties:
 #      javax.persistence.schema-generation.scripts.action: create
 #      javax.persistence.schema-generation.create-source: metadata
 #      javax.persistence.schema-generation.scripts.create-target: src/main/resources/schema-db2.sql
       hibernate:
-        default_schema: OTHERSCHEMA
+#        default_schema: OTHERSCHEMA # With this option, Hibernate set always schema in queries, but we don't want this.
         hbm2ddl:
-          auto: update
+          auto: none
         dialect: org.hibernate.dialect.DB2Dialect
         connection:
           autocommit: false
@@ -29,7 +31,7 @@ datasource:
         databaseName: testdb
         currentSchema: OTHERSCHEMA
         user: db2inst1
-        password: db2inst1
+        password: db2inst1-pwd
         clientProgramName: ${metadata.jirakey}-${metadata.slot}
         driverType: 4
         loginTimeout: 300
