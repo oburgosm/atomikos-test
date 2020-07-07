@@ -3,14 +3,12 @@ spring:
     name: atomikos-test
   datasource:
     platform: h2
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: none
-        dialect: org.hibernate.dialect.H2Dialect
-        connection:
-          autocommit: false
+  jta:
+    enabled: true
+    transaction-manager-id: ${spring.application.name}-tm
+    atomikos:
+      properties:
+        checkpoint-interval: 500
 datasource:
     ds1:
       max-pool-size: 5
