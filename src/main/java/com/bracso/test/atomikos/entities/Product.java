@@ -2,13 +2,18 @@ package com.bracso.test.atomikos.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 
 /**
  *
  * @author oburgosm
  */
+@Entity
 public class Product implements Serializable {
 
+    @Id
     private Long id;
     private String name;
 
