@@ -1,0 +1,26 @@
+= Atomikos opentacing
+
+* You need a Zipkin Server, for example:
+
+----
+docker run -d -p 9411:9411 openzipkin/zipkin
+----
+
+* Execute application
+
+----
+mvn spring-boot:run
+----
+
+* swagger-ui
+
+----
+http:/localhost:8080/swagger-ui/
+----
+
+* Try two insert a product with the same name twice (with different ID)
+
+* Search last trace on Zipkin server
+
+* You can change between contrib and atomikos instrumentation editing class `OpenTracingDataSourcePostProcessor`
+
