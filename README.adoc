@@ -3,7 +3,7 @@
 This branch test a XA transaction with one XA datasource and a Non-XA datsource.
 This feature is similar to "Last Resource Gambit" as explained link:https://www.atomikos.com/Documentation/NonXaDataSource[here]
 
-For this purpose,, we van:
+For this purpose,, we can:
 
 * Launch application with `mvn spring-boot:run`
 * Access to `http:localhost:8080/swagger-ui/`
