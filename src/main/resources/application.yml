@@ -1,6 +1,8 @@
 server:
   servlet:
-    context-path: /
+    context-path: /  
+  datasource:
+    initialization-mode: never
 spring:
   application:
     name: atomikos-test
@@ -10,26 +12,52 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          auto: none
+          auto: update
         dialect: org.hibernate.dialect.H2Dialect
         connection:
           autocommit: false
+logging:
+  level:
+    root: ERROR
+    com.atomikos: DEBUG
 datasource:
     ds1:
-      max-pool-size: 5
+      driver-class-name: 'org.h2.Driver'
+      url: jdbc:h2:mem:db1;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+      user: test
+      password: test
       min-pool-size: 5
-      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
-      use-driver-based-connection-validation: true
-      xa-properties:
-        user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
-        URL: jdbc:h2:mem:db1;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+      max-pool-size: 5
+      unique-resource-name: ds1-nonxa
+      local-transaction-mode: true
+      #ignore-jta-transactions: true
     ds2:
+      driver-class-name: 'org.h2.Driver'
+      url: jdbc:h2:mem:db2;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+      user: test
+      password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
+      min-pool-size: 5
+      max-pool-size: 5
+      unique-resource-name: ds2-nonxa
+      local-transaction-mode: true
+      #ignore-jta-transactions: true
+    ds1-xa:
       max-pool-size: 5
       min-pool-size: 5
       xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
       use-driver-based-connection-validation: true
+      unique-resource-name: ds1-xa
       xa-properties:
         user: test
-        password: ENC(AYt9rKfJEWtpNxpTZumq9A==)
+        password: test
+        URL: jdbc:h2:mem:db1;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;
+    ds2-xa:
+      max-pool-size: 5
+      min-pool-size: 5
+      xa-data-source-class-name: org.h2.jdbcx.JdbcDataSource
+      use-driver-based-connection-validation: true
+      unique-resource-name: ds2-xa
+      xa-properties:
+        user: test
+        password: test
         URL: jdbc:h2:mem:db2;MODE=Oracle;IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=TRUE;

@@ -13,7 +13,7 @@ import com.bracso.test.atomikos.entities.Product;
  * @author oburgosm
  */
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long>{
+public interface ProductRepository1 extends JpaRepository<Product, Long>{
 
 
 }

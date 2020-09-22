@@ -12,7 +12,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <packaging>jar</packaging>
     <properties>
-        <atomikos.version>5.0.96</atomikos.version>
+        <atomikos.version>5.0.97</atomikos.version>
     </properties>
     <dependencies>
         <dependency>
